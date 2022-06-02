@@ -2,7 +2,8 @@ package dbservice
 
 import (
 	"github.com/cjodra14/web_socket_chat/utils"
-	"github.com/jinzhu/gorm"
+	"gorm.io/driver/mysql"
+	"gorm.io/gorm"
 )
 
 type User struct {
@@ -21,7 +22,8 @@ type Account struct {
 }
 
 func connectDB() *gorm.DB {
-	db, err := gorm.Open("mysql", "host=127.0.0.1 port=3306 user=root password=pass1314 sslmode=disabled")
+	dsn := "root:pass1314@tcp(localhost:3308)/chat?charset=utf8mb4&parseTime=True&loc=Local"
+	db, err := gorm.Open(mysql.Open(dsn), &gorm.Config{})
 	utils.HandleErr(err)
 
 	return db
@@ -43,13 +45,12 @@ func createAccount() {
 		account := Account{Type: "Daily Account", Name: string(users[i].Username + "s" + " account"), Balance: uint(1000 * int(i+1)), UserID: user.ID}
 		db.Create(&account)
 	}
-	defer db.Close()
+
 }
 
 func Migrate() {
 	db := connectDB()
 	db.AutoMigrate(&User{}, &Account{})
-	defer db.Close()
 
 	createAccount()
 }

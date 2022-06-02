@@ -5,9 +5,14 @@ go 1.18
 require (
 	github.com/gin-contrib/static v0.0.1
 	github.com/gin-gonic/gin v1.7.7
-	github.com/jinzhu/gorm v1.9.16
 	golang.org/x/crypto v0.0.0-20220525230936-793ad666bf5e
 	gopkg.in/olahol/melody.v1 v1.0.0-20170518105555-d52139073376
+	gorm.io/gorm v1.23.4
+)
+
+require (
+	github.com/go-sql-driver/mysql v1.6.0 // indirect
+	github.com/jinzhu/now v1.1.4 // indirect
 )
 
 require (
@@ -26,4 +31,5 @@ require (
 	github.com/ugorji/go/codec v1.1.7 // indirect
 	golang.org/x/sys v0.0.0-20210615035016-665e8c7367d1 // indirect
 	gopkg.in/yaml.v2 v2.2.8 // indirect
+	gorm.io/driver/mysql v1.3.4
 )

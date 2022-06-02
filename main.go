@@ -4,12 +4,14 @@ import (
 	"fmt"
 	"time"
 
+	"github.com/cjodra14/web_socket_chat/dbservice"
 	"github.com/gin-contrib/static"
 	"github.com/gin-gonic/gin"
 	"gopkg.in/olahol/melody.v1"
 )
 
 func main() {
+	dbservice.Migrate()
 	router := gin.Default()
 	mel := melody.New()
 
